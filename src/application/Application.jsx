@@ -5,6 +5,8 @@ import store from '../store/store';
 import initStyles from './initStyles';
 
 import Posts from '../containers/Posts/Posts';
+import Layout from '../units/Layout/Layout';
+import Header from '../units/Header/Header';
 
 initStyles();
 
@@ -12,7 +14,10 @@ class Application extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Posts />
+        <Layout>
+          <Header />
+          <Posts />
+        </Layout>
       </Provider>
     );
   }

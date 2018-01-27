@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 import { Flex } from 'grid-styled';
 
@@ -9,6 +11,11 @@ const Logotype = styled.div`
   font-size: 36px;
   line-height: 42px;
   font-weight: 600;
+
+  ${media.lessThan('small')`
+    font-size: 18px;
+    line-height: 26px;
+  `};
 `;
 
 const Controls = styled(Flex).attrs({

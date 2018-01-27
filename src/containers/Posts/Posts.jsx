@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 import { Flex, Box } from 'grid-styled';
 
@@ -19,6 +21,11 @@ const PostsLayout = styled(Flex).attrs({
 const PostsBox = styled(Box)`
   width: calc(100% - 315px);
   margin-right: 35px;
+
+  ${media.lessThan('medium')`
+    width: 100%;
+    margin-right: 0;
+  `};
 `;
 
 const FiltersBox = styled(Box)`
@@ -28,6 +35,10 @@ const FiltersBox = styled(Box)`
   flex-shrink: 0;
   height: 500px;
   padding: 25px 18px;
+
+  ${media.lessThan('medium')`
+    display: none;
+  `};
 `;
 
 class Posts extends Component {

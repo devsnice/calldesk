@@ -1,31 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 import { Flex, Box } from 'grid-styled';
 
 import image from './image.jpg';
 
-const PostBox = styled(Flex).attrs({
-  justify: 'space-between'
-})`
+const PostBox = styled(Flex)`
   margin-bottom: 20px;
   width: 100%;
   height: 225px;
   border-radius: 6px;
   border: 1px solid rgba(151, 151, 151, 0.29);
   overflow: hidden;
+  justify: 'space-between';
+
+  ${media.lessThan('small')`
+    display: block;
+    height: auto;
+  `};
 `;
 
-const PostImage = styled.img`
-  display: block;
+const PostImage = styled.div`
   height: 100%;
   flex-basis: 275px;
   flex-shrink: 0;
   background-image: url("${props => props.image}");
   background-position: center;
   background-size: cover;
+
+  ${media.lessThan('small')`
+   height: 120px;
+  `};
 `;
 
 const PostBody = styled(Box)`
@@ -72,7 +81,7 @@ class Post extends Component {
 
     return (
       <PostBox>
-        <PostImage image={image} alt="post image" />
+        <PostImage image={image} />
         <PostBody>
           <Title>{title}</Title>
 

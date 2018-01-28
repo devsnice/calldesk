@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Flex, Box } from 'grid-styled';
+import MaskedInput from 'react-text-mask';
+
+import { getMasksProps } from '../../utils/formUtils';
 
 const InputBox = styled(Box)`
   width: 100%;
@@ -15,7 +18,13 @@ const Label = styled(Box)`
   margin-bottom: 7px;
 `;
 
-const InputElem = styled.input`
+const ErrorContainer = styled.div`
+  margin-top: 5px;
+  font-size: 12px;
+  color: red;
+`;
+
+const InputStyles = css`
   width: 100%;
   height: 40px;
   padding: 0 10px;
@@ -26,34 +35,53 @@ const InputElem = styled.input`
   box-sizing: border-box;
 `;
 
+const InputMaskElement = styled(MaskedInput)`
+  ${InputStyles};
+`;
+
+const InputElement = styled.input`
+  ${InputStyles};
+`;
+
 class Input extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    type: PropTypes.string,
     value: PropTypes.string,
     styles: PropTypes.object
   };
 
   static defaultProps = {
     value: '',
+    error: null,
+    type: 'text',
     styles: {
       mb: '20px'
     }
   };
 
   render() {
-    const { name, label, value, styles } = this.props;
+    const { name, label, value, type, onChange, styles, error } = this.props;
 
     const inputProps = {
       name,
-      value
+      value,
+      type,
+      onChange
     };
+
+    // Type of input component depends on its type
+    const InputComponent = type === 'phone' ? InputMaskElement : InputElement;
 
     return (
       <InputBox {...styles}>
         <Label>{label}</Label>
+        <InputComponent {...getMasksProps(type)} {...inputProps} />
 
-        <InputElem {...inputProps} />
+        {error && <ErrorContainer>{error}</ErrorContainer>}
       </InputBox>
     );
   }

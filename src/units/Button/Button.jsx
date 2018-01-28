@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Box } from 'grid-styled';
+
+const disabledButtonStyles = css`
+  background: #c8c8c8;
+  cursor: default;
+
+  &:hover {
+    background: #c8c8c8;
+  }
+`;
 
 const ButtonBox = styled(Box)`
   background: #15e1a9;
@@ -20,22 +29,38 @@ const ButtonBox = styled(Box)`
   &:hover {
     background: #1ad3a0;
   }
+
+  ${props => props.disabled && disabledButtonStyles};
 `;
 
 class Button extends Component {
   static propTypes = {
+    onClick: PropTypes.func,
     children: PropTypes.node,
-    styles: PropTypes.object
+    styles: PropTypes.object,
+    disabled: PropTypes.bool
   };
 
   static defaultProps = {
-    styles: {}
+    disabled: false,
+    styles: {},
+    onClick: null
+  };
+
+  handleClick = e => {
+    if (!this.props.disabled && this.props.onClick) {
+      this.props.onClick();
+    }
   };
 
   render() {
-    const { styles } = this.props;
+    const { styles, onClick, disabled } = this.props;
 
-    return <ButtonBox {...styles}>{this.props.children}</ButtonBox>;
+    return (
+      <ButtonBox disabled={disabled} onClick={this.handleClick} {...styles}>
+        {this.props.children}
+      </ButtonBox>
+    );
   }
 }
 

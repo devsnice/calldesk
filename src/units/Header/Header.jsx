@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 import { Flex } from 'grid-styled';
+import { Link } from 'react-router-dom';
 
 import Button from '../Button/Button';
 
@@ -31,7 +32,9 @@ class Header extends Component {
         </Logotype>
 
         <Controls>
-          <Button>Добавить</Button>
+          <Button>
+            <Link to="/add"> Добавить</Link>
+          </Button>
         </Controls>
       </Flex>
     );

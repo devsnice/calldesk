@@ -49,7 +49,7 @@ class Button extends Component {
 
   handleClick = e => {
     if (!this.props.disabled && this.props.onClick) {
-      this.props.onClick();
+      this.props.onClick(e);
     }
   };
 

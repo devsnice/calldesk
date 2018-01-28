@@ -29,6 +29,14 @@ const initStyles = () => {
       font-family: 'Roboto', sans-serif;
     }
 
+    a {
+      text-decoration: none;
+      
+      &:visited {
+        text-decoration: none;
+      }
+    }
+
 `;
 };
 

@@ -10,7 +10,7 @@ import Posts from '../containers/Posts/Posts';
 import Layout from '../units/Layout/Layout';
 import Header from '../units/Header/Header';
 
-import AddPost from '../containers/AddPost/AddPost';
+import AddPostPage from '../pages/AddPostPage/AddPostPage';
 
 initStyles();
 
@@ -24,7 +24,7 @@ class Application extends Component {
             <Posts />
 
             <Switch>
-              <Route path="/add" component={AddPost} />
+              <Route path="/add" component={AddPostPage} />
             </Switch>
           </Layout>
         </Router>

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import reducer from './reducer';
-import { loadPostsSaga } from '../ducks/posts';
+import { postsSaga } from '../ducks/posts';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,6 +12,6 @@ const store = createStore(
   applyMiddleware(sagaMiddleware)
 );
 
-sagaMiddleware.run(loadPostsSaga);
+sagaMiddleware.run(postsSaga);
 
 export default store;

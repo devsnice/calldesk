@@ -15,11 +15,6 @@ const Wrapper = styled.div`
   letter-spacing: 0.5px;
   transition: 0.4s ease;
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
   &:hover {
     background: #1ad3a0;
   }

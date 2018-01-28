@@ -29,6 +29,7 @@ const PopupBox = styled(Box)`
 
 const Popup = withCloseOnOutsideClick(PopupBox);
 
+// add portal wrapper
 class Modal extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,

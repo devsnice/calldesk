@@ -32,9 +32,9 @@ class Header extends Component {
         </Logotype>
 
         <Controls>
-          <Button>
-            <Link to="/add"> Добавить</Link>
-          </Button>
+          <Link to="/add">
+            <Button>Добавить</Button>
+          </Link>
         </Controls>
       </Flex>
     );

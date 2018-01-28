@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+import { Box } from 'grid-styled';
+
+const ButtonBox = styled(Box)`
   background: #15e1a9;
   border-radius: 4px;
   color: #fff;
@@ -22,11 +24,18 @@ const Wrapper = styled.div`
 
 class Button extends Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    styles: PropTypes.object
+  };
+
+  static defaultProps = {
+    styles: {}
   };
 
   render() {
-    return <Wrapper>{this.props.children}</Wrapper>;
+    const { styles } = this.props;
+
+    return <ButtonBox {...styles}>{this.props.children}</ButtonBox>;
   }
 }
 

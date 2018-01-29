@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 import media from 'styled-media-query';
@@ -23,7 +22,12 @@ const EditorTitle = styled.h3`
 
 const EditorControls = styled(Flex).attrs({
   justify: 'flex-end'
-})``;
+})`
+  ${media.lessThan('small')`
+    flex-direction: column;
+    width: 200px;
+  `};
+`;
 
 class PostEditor extends Component {
   static propTypes = {

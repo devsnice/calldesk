@@ -13,8 +13,6 @@ import image from './image.jpg';
 import deleteControl from './delete.svg';
 import editControl from './edit.svg';
 
-import postStoreService from '../../../services/postsStoreService';
-
 const PostBox = styled(Flex)`
   margin-bottom: 20px;
   width: 100%;
@@ -101,7 +99,7 @@ class Post extends Component {
   };
 
   render() {
-    const { id, title, description, city, phone, imgUrl } = this.props;
+    const { id, title, description, city, phone } = this.props;
 
     return (
       <PostBox>
@@ -113,13 +111,13 @@ class Post extends Component {
           <PostControls>
             <Link to={`/edit/${id}`}>
               <Control>
-                <img src={editControl} />
+                <img src={editControl} alt="edit control" />
               </Control>
             </Link>
 
             <Link to={`/delete/${id}`}>
               <Control onClick={this.handleDeletePost}>
-                <img src={deleteControl} />
+                <img src={deleteControl} alt="delete control" />
               </Control>
             </Link>
           </PostControls>

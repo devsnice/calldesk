@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import media from 'styled-media-query';
 
 import withCloseOnOutsideClick from '../../hocs/withCloseOnOutsideClick';
 
@@ -25,6 +24,7 @@ const PopupBox = styled(Box)`
   background: #fff;
   border-radius: 6px;
   width: 640px;
+  max-width: 100%;
 `;
 
 const Popup = withCloseOnOutsideClick(PopupBox);

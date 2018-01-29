@@ -199,8 +199,6 @@ export const postsDeleteRequestFailure = createAction(
 
 export const loadPostsSaga = function*() {
   while (true) {
-    const action = yield take(ACTIONS.POSTS_REQUEST);
-
     try {
       const posts = yield call(postStoreService.getAll);
       const postsIds = Object.keys(posts);

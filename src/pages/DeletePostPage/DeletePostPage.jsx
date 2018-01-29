@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Flex, Box } from 'grid-styled';
+import styled from 'styled-components';
 
 import Modal from '../../units/Modal/Modal';
 import Button from '../../units/Button/Button';
 
 import { postsInitDeleteForm, postsDeleteRequest } from '../../ducks/posts';
 import postStoreService from '../../services/postsStoreService';
+
+const Message = styled(Box)`
+  font-weight: 600;
+  font-size: 24px;
+`;
 
 class DeletePostPage extends Component {
   static propTypes = {
@@ -62,7 +68,7 @@ class DeletePostPage extends Component {
     return (
       <Modal history={history}>
         <Flex align="center" column>
-          <Box>Удалить объявление?</Box>
+          <Message>Удалить объявление?</Message>
 
           <Flex mt="40px" width="300px" justify="space-between">
             <Button onClick={this.handleCancel}>Отмена</Button>

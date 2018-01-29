@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import styled from 'styled-components';
-import media from 'styled-media-query';
-
-import { Flex, Box } from 'grid-styled';
 import Modal from '../../units/Modal/Modal';
 
 import PostEditor from '../../containers/PostEditor/PostEditor';
@@ -45,7 +41,7 @@ class AddPostPage extends Component {
   };
 
   render() {
-    const { history, done } = this.props;
+    const { history } = this.props;
 
     return (
       <Modal history={history}>

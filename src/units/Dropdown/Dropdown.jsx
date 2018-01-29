@@ -2,9 +2,9 @@ import { Dropdown } from 'semantic-ui-react';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { Flex, Box } from 'grid-styled';
+import { Box } from 'grid-styled';
 
 const DropdownBox = styled(Box)`
   width: 100%;

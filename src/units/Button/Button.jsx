@@ -54,7 +54,7 @@ class Button extends Component {
   };
 
   render() {
-    const { styles, onClick, disabled } = this.props;
+    const { styles, disabled } = this.props;
 
     return (
       <ButtonBox disabled={disabled} onClick={this.handleClick} {...styles}>

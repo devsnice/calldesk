@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-import { Flex, Box } from 'grid-styled';
+import { Box } from 'grid-styled';
 import MaskedInput from 'react-text-mask';
 
 import { getMasksProps } from '../../utils/formUtils';

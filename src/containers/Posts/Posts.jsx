@@ -28,6 +28,11 @@ const PostsBox = styled(Box)`
   `};
 `;
 
+const NonePostsMessage = styled(Box)`
+  font-size: 20px;
+  color: #c3c3c3;
+`;
+
 const FiltersBox = styled(Box)`
   border: 1px solid rgba(151, 151, 151, 0.24);
   border-radius: 6px;
@@ -55,6 +60,14 @@ class Posts extends Component {
 
   renderPosts = () => {
     const { postsIds } = this.props;
+
+    if (!postsIds.length) {
+      return (
+        <NonePostsMessage className="posts__empty-message">
+          А объявлений еще нет, будь первым!
+        </NonePostsMessage>
+      );
+    }
 
     return postsIds.map(id => <Post key={id} id={id} />);
   };

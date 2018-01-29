@@ -21,6 +21,12 @@ class EditPostPage extends Component {
     post: null
   };
 
+  handleCancel = () => {
+    const { history } = this.props;
+
+    history.goBack();
+  };
+
   handleEditPost = post => {
     const { postsEditRequest, match } = this.props;
     const postId = match.params.id;
@@ -63,6 +69,7 @@ class EditPostPage extends Component {
         <Modal history={history}>
           <PostEditor
             post={this.state.post}
+            handleCancel={this.handleCancel}
             handleSubmit={this.handleEditPost}
           />
         </Modal>

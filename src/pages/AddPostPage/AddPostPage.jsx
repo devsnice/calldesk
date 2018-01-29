@@ -20,6 +20,18 @@ class AddPostPage extends Component {
     postsAddRequest: PropTypes.func.isRequired
   };
 
+  handleCancel = () => {
+    const { history } = this.props;
+
+    history.goBack();
+  };
+
+  handleCreatePost = post => {
+    const { postsAddRequest } = this.props;
+
+    postsAddRequest(post);
+  };
+
   componentDidMount = () => {
     const { postsInitCreateForm } = this.props;
 
@@ -32,18 +44,15 @@ class AddPostPage extends Component {
     }
   };
 
-  handleCreatePost = post => {
-    const { postsAddRequest } = this.props;
-
-    postsAddRequest(post);
-  };
-
   render() {
     const { history, done } = this.props;
 
     return (
       <Modal history={history}>
-        <PostEditor handleSubmit={this.handleCreatePost} />
+        <PostEditor
+          handleCancel={this.handleCancel}
+          handleSubmit={this.handleCreatePost}
+        />
       </Modal>
     );
   }

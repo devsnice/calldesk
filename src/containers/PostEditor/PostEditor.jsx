@@ -27,6 +27,7 @@ const EditorControls = styled(Flex).attrs({
 class PostEditor extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
+    handleCancel: PropTypes.func.isRequired,
     post: PropTypes.object
   };
 
@@ -122,7 +123,12 @@ class PostEditor extends Component {
                 />
 
                 <EditorControls>
-                  <Button styles={{ mr: '15px' }}>Отменить</Button>
+                  <Button
+                    onClick={this.props.handleCancel}
+                    styles={{ mr: '15px' }}
+                  >
+                    Отменить
+                  </Button>
 
                   <Button
                     disabled={!isValid || isSubmitting}

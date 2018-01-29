@@ -12,7 +12,7 @@ import Button from '../../units/Button/Button';
 import Textarea from '../../units/Textarea/Textarea';
 import Dropdown from '../../units/Dropdown/Dropdown';
 
-import { isValidPhone } from '../../utils/formUtils';
+import { isValidPhone } from '../../../utils/formUtils';
 
 const EditorTitle = styled.h3`
   font-weight: 600;

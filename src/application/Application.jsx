@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from '../store/store';
 import initStyles from './initStyles';
 
-import Posts from '../containers/Posts/Posts';
-import Layout from '../units/Layout/Layout';
-import Header from '../units/Header/Header';
+import Posts from '../components/containers/Posts/Posts';
+import Layout from '../components/units/Layout/Layout';
+import Header from '../components/units/Header/Header';
 
 import AddPostPage from '../pages/AddPostPage/AddPostPage';
 import EditPostPage from '../pages/EditPostPage/EditPostPage';

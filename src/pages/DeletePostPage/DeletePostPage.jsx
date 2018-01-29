@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { Flex, Box } from 'grid-styled';
 import styled from 'styled-components';
 
-import Modal from '../../units/Modal/Modal';
-import Button from '../../units/Button/Button';
+import Modal from '../../components/units/Modal/Modal';
+import Button from '../../components/units/Button/Button';
 
 import { postsInitDeleteForm, postsDeleteRequest } from '../../ducks/posts';
 import postStoreService from '../../services/postsStoreService';

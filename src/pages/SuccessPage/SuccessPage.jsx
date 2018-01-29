@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Box } from 'grid-styled';
-import Modal from '../../units/Modal/Modal';
+import Modal from '../../components/units/Modal/Modal';
 
 class SuccessPage extends Component {
   render() {

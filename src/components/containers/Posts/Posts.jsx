@@ -7,7 +7,7 @@ import media from 'styled-media-query';
 
 import { Flex, Box } from 'grid-styled';
 
-import { postsRequest } from '../../ducks/posts';
+import { postsRequest } from '../../../ducks/posts';
 
 import Post from './Post/Post';
 

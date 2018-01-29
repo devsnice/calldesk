@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { Box } from 'grid-styled';
 import MaskedInput from 'react-text-mask';
 
-import { getMasksProps } from '../../utils/formUtils';
+import { getMasksProps } from '../../../utils/formUtils';
 
 const InputBox = styled(Box)`
   width: 100%;

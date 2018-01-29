@@ -16,6 +16,10 @@ const initialState = {
   editForm: {
     error: false,
     done: false
+  },
+  deleteForm: {
+    error: false,
+    done: false
   }
 };
 
@@ -34,7 +38,12 @@ const ACTIONS = {
   POSTS_INIT_EDIT_FORM: `${duckName}/POSTS_INIT_EDIT_FORM`,
   POSTS_EDIT_REQUEST: `${duckName}/POSTS_EDIT_REQUEST`,
   POSTS_EDIT_REQUEST_SUCCESS: `${duckName}/POSTS_EDIT_REQUEST_SUCCESS`,
-  POSTS_EDIT_REQUEST_FAILURE: `${duckName}/POSTS_EDIT_REQUEST_FAILURE`
+  POSTS_EDIT_REQUEST_FAILURE: `${duckName}/POSTS_EDIT_REQUEST_FAILURE`,
+
+  POSTS_INIT_DELETE_FORM: `${duckName}/POSTS_INIT_DELETE_FORM`,
+  POSTS_DELETE_REQUEST: `${duckName}/POSTS_DELETE_REQUEST`,
+  POSTS_DELETE_REQUEST_SUCCESS: `${duckName}/POSTS_DELETE_REQUEST_SUCCESS`,
+  POSTS_DELETE_REQUEST_FAILURE: `${duckName}/POSTS_DELETE_REQUEST_FAILURE`
 };
 
 /**
@@ -108,6 +117,22 @@ const reducer = (state = initialState, action) => {
         }
       };
     }
+    case ACTIONS.POSTS_INIT_DELETE_FORM: {
+      return {
+        ...state,
+        deleteForm: initialState.deleteForm
+      };
+    }
+    case ACTIONS.POSTS_DELETE_REQUEST_SUCCESS: {
+      return {
+        ...state,
+        postsIds: state.postsIds.filter(id => id !== payload.id),
+        deleteForm: {
+          ...state.deleteForm,
+          done: true
+        }
+      };
+    }
 
     default:
       return state;
@@ -153,6 +178,19 @@ export const postsEditRequestSuccess = createAction(
 );
 export const postsEditRequestFailure = createAction(
   ACTIONS.POSTS_EDIT_REQUEST_FAILURE
+);
+
+// Delete post
+export const postsInitDeleteForm = createAction(ACTIONS.POSTS_INIT_DELETE_FORM);
+export const postsDeleteRequest = createAction(
+  ACTIONS.POSTS_DELETE_REQUEST,
+  id => ({ id })
+);
+export const postsDeleteRequestSuccess = createAction(
+  ACTIONS.POSTS_DELETE_REQUEST_SUCCESS
+);
+export const postsDeleteRequestFailure = createAction(
+  ACTIONS.POSTS_DELETE_REQUEST_FAILURE
 );
 
 /**
@@ -219,8 +257,22 @@ export const editPostSaga = function*() {
   }
 };
 
+export const deletePostSaga = function*() {
+  while (true) {
+    const action = yield take(ACTIONS.POSTS_DELETE_REQUEST);
+
+    try {
+      const id = yield call(postStoreService.delete, action.payload.id);
+
+      yield put(postsDeleteRequestSuccess(id));
+    } catch (err) {
+      yield put(postsDeleteRequestFailure());
+    }
+  }
+};
+
 export const postsSaga = function*() {
-  yield all([loadPostsSaga(), addPostSaga(), editPostSaga()]);
+  yield all([loadPostsSaga(), addPostSaga(), editPostSaga(), deletePostSaga()]);
 };
 
 export default reducer;

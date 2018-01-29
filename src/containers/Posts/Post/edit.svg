@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>pencil-edit-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="pencil-edit-button" fill-rule="nonzero" fill="#C0C0C0">
+            <g id="Shape">
+                <path d="M12.783573,3.07692308 L16.9230769,7.21573484 L6.44484931,17.6923077 L2.30769231,13.5534959 L12.783573,3.07692308 Z M19.6140507,2.27430281 L17.8972533,0.511071129 C17.2337703,-0.170357043 16.1564112,-0.170357043 15.4906741,0.511071129 L13.8461538,2.20007076 L17.6958075,6.15384615 L19.6140507,4.18372019 C20.1286498,3.65516594 20.1286498,2.80282031 19.6140507,2.27430281 Z M0.0119416604,19.4136406 C-0.0661543973,19.7599523 0.251175651,20.0702651 0.602687681,19.9860452 L5.38461538,18.8436333 L1.0957538,14.6153846 L0.0119416604,19.4136406 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

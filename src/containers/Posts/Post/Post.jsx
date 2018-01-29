@@ -10,11 +10,14 @@ import media from 'styled-media-query';
 import { Flex, Box } from 'grid-styled';
 
 import image from './image.jpg';
+import deleteControl from './delete.svg';
+import editControl from './edit.svg';
+
+import postStoreService from '../../../services/postsStoreService';
 
 const PostBox = styled(Flex)`
   margin-bottom: 20px;
   width: 100%;
-  height: 225px;
   border-radius: 6px;
   border: 1px solid rgba(151, 151, 151, 0.29);
   overflow: hidden;
@@ -27,20 +30,26 @@ const PostBox = styled(Flex)`
 `;
 
 const PostImage = styled.div`
-  height: 100%;
-  flex-basis: 275px;
-  flex-shrink: 0;
+
+  width: 275px;
   background-image: url("${props => props.image}");
   background-position: center;
   background-size: cover;
 
   ${media.lessThan('small')`
     height: 120px;
+    width: 100%
   `};
 `;
 
 const PostBody = styled(Box)`
   padding: 20px 25px 20px 20px;
+  position: relative;
+  width: calc(100% - 275px);
+
+  ${media.lessThan('small')`
+    width: 100%
+  `};
 `;
 
 const PostData = styled(Box)`
@@ -50,7 +59,11 @@ const PostData = styled(Box)`
   color: #5f5f5f;
 `;
 
-const PostControls = styled(Flex)``;
+const PostControls = styled(Flex)`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;
 
 const Title = styled.h2`
   font-size: 18px;
@@ -61,8 +74,13 @@ const Title = styled.h2`
   word-wrap: break-word;
 `;
 
-const Description = styled(Box)`
+const Description = styled.div`
   font-size: 15px;
+`;
+
+const Control = styled.div`
+  margin-left: 16px;
+  cursor: pointer;
 `;
 
 class Post extends Component {
@@ -92,11 +110,17 @@ class Post extends Component {
           <Title>{title}</Title>
 
           <PostControls>
-            <Box mr="5px">
-              <Link to={`/edit/${id}`}>редактировать</Link>
-            </Box>
+            <Link to={`/edit/${id}`}>
+              <Control>
+                <img src={editControl} />
+              </Control>
+            </Link>
 
-            <Link to={`/delete/${id}`}>удалить</Link>
+            <Link to={`/delete/${id}`}>
+              <Control onClick={this.handleDeletePost}>
+                <img src={deleteControl} />
+              </Control>
+            </Link>
           </PostControls>
 
           <PostData>

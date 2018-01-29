@@ -12,6 +12,7 @@ import Header from '../units/Header/Header';
 
 import AddPostPage from '../pages/AddPostPage/AddPostPage';
 import EditPostPage from '../pages/EditPostPage/EditPostPage';
+import DeletePostPage from '../pages/DeletePostPage/DeletePostPage';
 import SuccessPage from '../pages/SuccessPage/SuccessPage';
 import FailurePage from '../pages/FailurePage/FailurePage';
 
@@ -29,6 +30,7 @@ class Application extends Component {
             <Switch>
               <Route path="/add" component={AddPostPage} />
               <Route exact path="/edit/:id" component={EditPostPage} />
+              <Route exact path="/delete/:id" component={DeletePostPage} />
               <Route path="/success" component={SuccessPage} />
               <Route path="/failure" component={FailurePage} />
             </Switch>

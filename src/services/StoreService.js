@@ -74,13 +74,14 @@ class StoreService {
   update = (id, newItem) => {
     const items = this.getAll();
 
-    if (!items[id]) throw new Error(`Couldn't update, unknown id ${id}`);
+    if (!items[id]) {
+      throw new Error(`Couldn't update, unknown id ${id}`);
+    } else {
+      items[id] = newItem;
+      Storage.set(this.modelName, items);
 
-    items[id] = newItem;
-
-    Storage.set(this.modelName, items);
-
-    return { ...newItem, id };
+      return { ...newItem, id };
+    }
   };
 
   /*
@@ -90,13 +91,14 @@ class StoreService {
   delete = id => {
     const items = this.getAll();
 
-    if (!items[id]) throw new Error(`Couldn't update, unknown id ${id}`);
+    if (!items[id]) {
+      throw new Error(`Couldn't update, unknown id ${id}`);
+    } else {
+      delete items[id];
+      Storage.set(this.modelName, items);
 
-    delete items[id];
-
-    Storage.set(this.modelName, items);
-
-    return { id };
+      return { id };
+    }
   };
 }
 

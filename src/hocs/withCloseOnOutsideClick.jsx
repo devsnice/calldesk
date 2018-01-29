@@ -22,12 +22,16 @@ const withCloseOnOutsideClick = WrappedComponent => {
     };
 
     closeOnDocumentClick = e => {
-      const { history } = this.props;
+      const { history, onClosePage } = this.props;
 
       if (doesNodeContainClick(this.ref, e)) return;
 
       // just implementation for our case
-      history.goBack();
+      if (onClosePage) {
+        history.push(onClosePage);
+      } else {
+        history.goBack();
+      }
     };
 
     handleRef = elem => (this.ref = elem);

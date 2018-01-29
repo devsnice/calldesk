@@ -34,15 +34,22 @@ class Modal extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.element])
       .isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    onClosePage: PropTypes.string
+  };
+
+  static defaultProps = {
+    onClosePage: null
   };
 
   render() {
-    const { children, history } = this.props;
+    const { children, onClosePage, history } = this.props;
 
     return (
       <Overlay>
-        <Popup history={history}>{children}</Popup>
+        <Popup onClosePage={onClosePage} history={history}>
+          {children}
+        </Popup>
       </Overlay>
     );
   }

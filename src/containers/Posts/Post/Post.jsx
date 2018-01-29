@@ -76,6 +76,7 @@ const Title = styled.h2`
 
 const Description = styled.div`
   font-size: 15px;
+  word-wrap: break-word;
 `;
 
 const Control = styled.div`

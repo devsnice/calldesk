@@ -11,6 +11,7 @@ import { Flex, Box } from 'grid-styled';
 import Input from '../../units/Input/Input';
 import Button from '../../units/Button/Button';
 import Textarea from '../../units/Textarea/Textarea';
+import Dropdown from '../../units/Dropdown/Dropdown';
 
 import { isValidPhone } from '../../utils/formUtils';
 
@@ -75,7 +76,8 @@ class PostEditor extends Component {
           touched,
           handleChange,
           handleSubmit,
-          isSubmitting
+          isSubmitting,
+          setFieldValue
         }) => {
           const isValid = !Object.keys(errors).length;
 
@@ -94,25 +96,27 @@ class PostEditor extends Component {
                   error={errors.title}
                 />
 
-                <Flex justify="space-between">
-                  <Input
+                <Box mb="15px">
+                  <Dropdown
+                    onChange={setFieldValue}
                     name="city"
                     label="Город"
-                    onChange={handleChange}
+                    items={[
+                      { key: 'moskow', value: 'Moskow', text: 'Москва' },
+                      { key: 'spb', value: 'Spb', text: 'Питер' }
+                    ]}
                     value={values.city}
-                    error={errors.city}
-                    styles={{ mr: '40px' }}
                   />
+                </Box>
 
-                  <Input
-                    name="phone"
-                    type="phone"
-                    label="Номер телефона"
-                    onChange={handleChange}
-                    value={values.phone}
-                    error={errors.phone}
-                  />
-                </Flex>
+                <Input
+                  name="phone"
+                  type="phone"
+                  label="Номер телефона"
+                  onChange={handleChange}
+                  value={values.phone}
+                  error={errors.phone}
+                />
 
                 <Textarea
                   name="description"

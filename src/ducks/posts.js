@@ -12,6 +12,10 @@ const initialState = {
   createForm: {
     error: false,
     done: false
+  },
+  editForm: {
+    error: false,
+    done: false
   }
 };
 
@@ -21,10 +25,16 @@ const ACTIONS = {
   POSTS_REQUEST: `${duckName}/POSTS_REQUEST`,
   POSTS_REQUEST_SUCCESS: `${duckName}/POSTS_REQUEST_SUCCESS`,
   POSTS_REQUEST_FAILURE: `${duckName}/POSTS_REQUEST_FAILURE`,
+
   POSTS_INIT_CREATE_FORM: `${duckName}/POSTS_INIT_CREATE_FORM`,
   POSTS_ADD_REQUEST: `${duckName}/POSTS_ADD_REQUEST`,
   POSTS_ADD_REQUEST_SUCCESS: `${duckName}/POSTS_ADD_REQUEST_SUCCESS`,
-  POSTS_ADD_REQUEST_FAILURE: `${duckName}/POSTS_ADD_REQUEST_FAILURE`
+  POSTS_ADD_REQUEST_FAILURE: `${duckName}/POSTS_ADD_REQUEST_FAILURE`,
+
+  POSTS_INIT_EDIT_FORM: `${duckName}/POSTS_INIT_EDIT_FORM`,
+  POSTS_EDIT_REQUEST: `${duckName}/POSTS_EDIT_REQUEST`,
+  POSTS_EDIT_REQUEST_SUCCESS: `${duckName}/POSTS_EDIT_REQUEST_SUCCESS`,
+  POSTS_EDIT_REQUEST_FAILURE: `${duckName}/POSTS_EDIT_REQUEST_FAILURE`
 };
 
 /**
@@ -79,6 +89,25 @@ const reducer = (state = initialState, action) => {
         }
       };
     }
+    case ACTIONS.POSTS_INIT_EDIT_FORM: {
+      return {
+        ...state,
+        editForm: initialState.editForm
+      };
+    }
+    case ACTIONS.POSTS_EDIT_REQUEST_SUCCESS: {
+      return {
+        ...state,
+        editForm: {
+          ...state.editForm,
+          done: true
+        },
+        byId: {
+          ...state.byId,
+          [payload.post.id]: payload.post
+        }
+      };
+    }
 
     default:
       return state;
@@ -111,6 +140,19 @@ export const postsAddRequestSuccess = createAction(
 );
 export const postsAddRequestFailure = createAction(
   ACTIONS.POSTS_ADD_REQUEST_FAILURE
+);
+
+// Edit post
+export const postsInitEditForm = createAction(ACTIONS.POSTS_INIT_EDIT_FORM);
+export const postsEditRequest = createAction(
+  ACTIONS.POSTS_EDIT_REQUEST,
+  (id, post) => ({ id, post })
+);
+export const postsEditRequestSuccess = createAction(
+  ACTIONS.POSTS_EDIT_REQUEST_SUCCESS
+);
+export const postsEditRequestFailure = createAction(
+  ACTIONS.POSTS_EDIT_REQUEST_FAILURE
 );
 
 /**
@@ -155,8 +197,30 @@ export const addPostSaga = function*() {
   }
 };
 
+export const editPostSaga = function*() {
+  while (true) {
+    const action = yield take(ACTIONS.POSTS_EDIT_REQUEST);
+
+    try {
+      const editedPost = yield call(
+        postStoreService.update,
+        action.payload.id,
+        action.payload.post
+      );
+
+      yield put(
+        postsEditRequestSuccess({
+          post: editedPost
+        })
+      );
+    } catch (err) {
+      yield put(postsEditRequestFailure());
+    }
+  }
+};
+
 export const postsSaga = function*() {
-  yield all([loadPostsSaga(), addPostSaga()]);
+  yield all([loadPostsSaga(), addPostSaga(), editPostSaga()]);
 };
 
 export default reducer;

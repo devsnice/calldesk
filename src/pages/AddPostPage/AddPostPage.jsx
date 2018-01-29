@@ -26,6 +26,12 @@ class AddPostPage extends Component {
     postsInitCreateForm();
   };
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.done) {
+      this.props.history.push('/success');
+    }
+  };
+
   handleCreatePost = post => {
     const { postsAddRequest } = this.props;
 

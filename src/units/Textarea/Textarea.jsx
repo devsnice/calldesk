@@ -24,8 +24,8 @@ const ErrorContainer = styled.div`
 const TextareaElement = styled.textarea`
   width: 100%;
   height: 150px;
-  padding: 0 10px;
-  line-height: 36px;
+  padding: 5px 10px;
+  line-height: 18px;
   border: 1px solid #e6e3e3;
   border-radius: 4px;
   font-size: 14px;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
@@ -33,7 +35,7 @@ const PostImage = styled.div`
   background-size: cover;
 
   ${media.lessThan('small')`
-   height: 120px;
+    height: 120px;
   `};
 `;
 
@@ -48,12 +50,15 @@ const PostData = styled(Box)`
   color: #5f5f5f;
 `;
 
+const PostControls = styled(Flex)``;
+
 const Title = styled.h2`
   font-size: 18px;
   line-height: 24px;
   width: 450px;
   max-width: 100%;
   font-weight: 600;
+  word-wrap: break-word;
 `;
 
 const Description = styled(Box)`
@@ -77,16 +82,25 @@ class Post extends Component {
   };
 
   render() {
-    const { title, description, city, phone, imgUrl } = this.props;
+    const { id, title, description, city, phone, imgUrl } = this.props;
 
     return (
       <PostBox>
         <PostImage image={image} />
+
         <PostBody>
           <Title>{title}</Title>
 
+          <PostControls>
+            <Box mr="5px">
+              <Link to={`/edit/${id}`}>редактировать</Link>
+            </Box>
+
+            <Link to={`/delete/${id}`}>удалить</Link>
+          </PostControls>
+
           <PostData>
-            {city} | {phone}
+            {city} {city && '|'} {phone}
           </PostData>
 
           <Description>{description}</Description>

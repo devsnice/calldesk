@@ -1,4 +1,4 @@
-import StoreService from './StoreService';
+import StoreService from './StoreService/StoreService';
 
 const postStoreService = new StoreService('posts');
 

@@ -80,7 +80,7 @@ class StoreService {
       items[id] = newItem;
       Storage.set(this.modelName, items);
 
-      return { ...newItem, id };
+      return { id, ...newItem };
     }
   };
 

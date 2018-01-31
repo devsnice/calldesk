@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { doesNodeContainClick } from '../utils/domUtils';
+import { doesNodeContainClick } from '../../utils/domUtils';
 
 const withCloseOnOutsideClick = WrappedComponent => {
   return class ComponentWithCloseOnOutsideClick extends React.Component {

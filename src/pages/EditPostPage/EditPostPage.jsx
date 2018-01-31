@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Modal from '../../units/Modal/Modal';
+import Modal from '../../components/units/Modal/Modal';
 
-import PostEditor from '../../containers/PostEditor/PostEditor';
+import PostEditor from '../../components/containers/PostEditor/PostEditor';
 
 import { postsInitEditForm, postsEditRequest } from '../../ducks/posts';
 import postStoreService from '../../services/postsStoreService';
